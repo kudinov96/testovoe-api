@@ -19,7 +19,7 @@ class CategoryResource extends JsonResource
             "title"         => $this->title,
             "parent_id"     => $this->parent_id,
             "index"         => $this->index,
-            "subcategories" => $this->subcategories,
+            "subcategories" => $this->collection($this->subcategories),
         ];
     }
 }
