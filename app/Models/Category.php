@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string           $title
  * @property int              $parent_id
  * @property int              $index
- * @property bool             $visibility_status
  *
  * @property Carbon           $created_at
  * @property Carbon           $updated_at
