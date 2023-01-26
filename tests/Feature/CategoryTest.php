@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use Tests\FeatureTestCase;
 
 class CategoryTest extends FeatureTestCase
@@ -31,5 +32,16 @@ class CategoryTest extends FeatureTestCase
         $response = $this->getJson("/api/categories?order=test");
 
         $response->assertJsonFragment(["message" => "The selected order is invalid."]);
+    }
+
+    public function test_update()
+    {
+        $payload = [
+            "index" => 5,
+            "parent_id" => 2,
+        ];
+
+        $response = $this->putJson("/api/categories/1", $payload);
+        $response->assertJsonFragment(["success" => true]);
     }
 }

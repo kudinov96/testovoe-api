@@ -29,6 +29,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/Category'
 
+  /categories/{id}:
+    put:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+        - name: index
+          in: query
+          required: false
+          schema:
+            type : integer
+        - name: parent_id
+          in: query
+          required: false
+          schema:
+            type : integer
+      responses:
+        '200':
+          description: JSON array updated category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+
   /products:
     get:
       parameters:
