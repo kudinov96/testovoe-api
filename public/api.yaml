@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Test API
+  version: 0.0.1
+servers:
+  - url: http://localhost/api
+    description: local server
+paths:
+  /categories:
+    get:
+      parameters:
+        - name: order
+          in: query
+          required: false
+          description: "`index` or `parent_id`"
+          schema:
+            type : string
+        - name: order_by
+          in: query
+          required: false
+          description: "`asc` or `desc`"
+          schema:
+            type : string
+      responses:
+        '200':
+          description: JSON array categories with subcategories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+
+  /products:
+    get:
+      parameters:
+        - name: order
+          in: query
+          required: false
+          description: "`title`"
+          schema:
+            type : string
+        - name: order_by
+          in: query
+          required: false
+          description: "`asc` or `desc`"
+          schema:
+            type : string
+        - name: search
+          in: query
+          required: false
+          description: "Search by title or description product"
+          schema:
+            type : string
+      responses:
+        '200':
+          description: JSON array products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        categories:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: "Ut aut."
+                  parent_id:
+                    type: integer
+                    example: 1
+                  index:
+                    type: integer
+                    example: 9
+                  subcategories:
+                    type: array
+                    items:
+                      type: object
+      xml:
+        name: category
+
+    Product:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        products:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: "Sed."
+                  description:
+                    type: string
+                    example: "Provident aliquam aliquam nihil ratione earum ipsa. Rerum et rerum aperiam quaerat sint dolor ut. Et similique modi delectus ut. Est veritatis ea odio eum."
+                  category_id:
+                    type: integer
+                    example: 10

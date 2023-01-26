@@ -11,8 +11,10 @@ class CategoryController extends Controller
 {
     public function index(CategoryRequest $request): JsonResponse
     {
-        $orderBy    = $request->input("order_by") ?? "index";
-        $categories = Category::orderBy($orderBy)->get();
+        $order      = $request->input("order") ?? "index";
+        $orderBy    = $request->input("order_by") ?? "desc";
+
+        $categories = Category::orderBy($order, $orderBy)->get();
 
         return response()->json([
             "success" => true,
