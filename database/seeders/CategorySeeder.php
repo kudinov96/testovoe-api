@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             Category::factory()->create([
-                "parent_id" => $i > 0 ? Category::all()->random()->id : null,
+                "parent_id" => $i > 0 && $i <= 7 ? Category::all()->random()->id : null,
                 "index"     => $i,
             ]);
         }
