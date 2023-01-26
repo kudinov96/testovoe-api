@@ -18,4 +18,18 @@ class CategoryTest extends FeatureTestCase
 
         $response->assertJsonFragment(["success" => true]);
     }
+
+    public function test_hierarchy_categories_order_by_parent_id()
+    {
+        $response = $this->getJson("/api/categories?order_by=parent_id");
+
+        $response->assertJsonFragment(["success" => true]);
+    }
+
+    public function test_hierarchy_categories_order_by_validate()
+    {
+        $response = $this->getJson("/api/categories?order_by=test");
+
+        $response->assertJsonFragment(["message" => "The selected order by is invalid."]);
+    }
 }
