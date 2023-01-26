@@ -15,7 +15,7 @@ class UpdateCategory
 
         if ($request->index) {
             DB::table("categories")
-                ->where("index", ">=", $item->index)
+                ->where("index", ">=", $request->index)
                 ->increment("index");
         }
 
